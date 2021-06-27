@@ -45,12 +45,6 @@ spec:
             readOnly: true
         ports:
         - containerPort: 8081
-        livenessProbe:
-          httpGet:
-            path: /api/v0/feed/health
-            port: 8081
-          initialDelaySeconds: 15  # The kubelet will run the first liveness probe 15 seconds after the container starts.
-          periodSeconds: 20  # kubelet will continue to run this check every 20 seconds.
       - name: akuudagram-backend-users
         image: msd4docker/repo_udagram:tag_backend_user
         imagePullPolicy: Always
@@ -81,12 +75,6 @@ spec:
             readOnly: true
         ports:
         - containerPort: 8082
-        livenessProbe:
-          httpGet:
-            path: /api/v0/user/health
-            port: 8082
-          initialDelaySeconds: 15  # The kubelet will run the first liveness probe 15 seconds after the container starts.
-          periodSeconds: 20  # kubelet will continue to run this check every 20 seconds.
       restartPolicy: Always
       volumes:
         - name: aws-secret
