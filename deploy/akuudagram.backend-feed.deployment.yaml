@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akuudagram-backend-feed
+  labels:
+    app: akuudagram-backend-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akuudagram-backend-feed
+  template:
+    metadata:
+      labels:
+        app: akuudagram-backend-feed
+    spec:
+      containers:
+      - name: akuudagram-backend-feed
+        image: msd4docker/repo_udagram:tag_backend_feed
+        imagePullPolicy: Always
+        env:
+        - name: AWS_REGION
+          value: "us-west-1"
+        - name: AWS_MEDIA_BUCKET
+          value: "s3akuudacityudagram"
+        - name: AWS_PROFILE
+          value: "root"
+        - name: POSTGRES_USERNAME
+          value: "codenameaku"
+        - name: POSTGRES_PASSWORD
+          value: "MSD4aws1"
+        - name: POSTGRES_DATABASE
+          value: "rdsAkuUdacityUdagram"
+        - name: POSTGRES_HOST
+          value: "rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com"
+        - name: POSTGRES_DB
+          value: "rdsAkuUdacityUdagram"
+        - name: URL
+          value: "http://localhost:8100"
+        - name: JWT_SECRET
+          value: "helloworld"
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true
+        ports:
+        - containerPort: 8081
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8081
+          initialDelaySeconds: 15  # The kubelet will run the first liveness probe 15 seconds after the container starts.
+          periodSeconds: 20  # kubelet will continue to run this check every 20 seconds.
+      restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret

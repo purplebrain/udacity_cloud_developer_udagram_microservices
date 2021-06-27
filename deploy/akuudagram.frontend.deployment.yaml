@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akuudagram-frontend
+  labels:
+    app: akuudagram-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akuudagram-frontend
+  template:
+    metadata:
+      labels:
+        app: akuudagram-frontend
+    spec:
+      containers:
+      - name: akuudagram-frontend
+        image: msd4docker/repo_udagram:tag_frontend
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      restartPolicy: Always

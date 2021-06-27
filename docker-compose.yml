@@ -1,0 +1,52 @@
+version: '3.5'
+networks:
+    nw_udagram:
+        driver: bridge
+
+services:
+    frontend:
+        build:
+            context: ./udagram-frontend
+            dockerfile: Dockerfile      
+        image: msd4docker/repo_udagram:tag_frontend
+        container_name: akuudagram-frontend
+        networks:
+            - nw_udagram
+        ports:
+            - 8100:80
+ 
+    reverseproxy:
+        depends_on:
+            - feed
+            - users
+        build:
+            context: ./udagram-rproxy
+            dockerfile: Dockerfile      
+        image: msd4docker/repo_udagram:tag_rproxy
+        container_name: akuudagram-rproxy
+        networks:
+            - nw_udagram
+        ports:
+            - 8080:8080
+ 
+    feed:
+        build:
+            context: ./udagram-api/feed
+            dockerfile: Dockerfile
+        image: msd4docker/repo_udagram:tag_backend_feed
+        container_name: akuudagram-backend-feed
+        networks:
+            - nw_udagram
+        volumes:
+            - "/home/aku/.aws:/root/.aws"
+
+    users:
+        build:
+            context: ./udagram-api/user
+            dockerfile: Dockerfile      
+        image: msd4docker/repo_udagram:tag_backend_users
+        container_name: akuudagram-backend-users
+        networks:
+            - nw_udagram
+        volumes:
+            - "/home/aku/.aws:/root/.aws"

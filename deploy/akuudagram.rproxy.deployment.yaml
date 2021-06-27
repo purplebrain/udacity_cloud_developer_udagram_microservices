@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akuudagram-rproxy
+  labels:
+    app: akuudagram-rproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akuudagram-rproxy
+  template:
+    metadata:
+      labels:
+        app: akuudagram-rproxy
+    spec:
+      containers:
+      - name: akuudagram-rproxy
+        image: msd4docker/repo_udagram:tag_rproxy
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always

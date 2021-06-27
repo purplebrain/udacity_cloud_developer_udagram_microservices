@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: akuudagram-rproxy
+  labels:
+    service: akuudagram-rproxy
+spec:
+  type: LoadBalancer
+  selector:
+    service: akuudagram-rproxy
+  ports:
+  - name: "reverse-proxy"
+    port: 8080
+    targetPort: 8080
