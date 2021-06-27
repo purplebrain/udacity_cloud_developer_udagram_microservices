@@ -42,9 +42,9 @@ services:
 
     users:
         build:
-            context: ./udagram-api/user
+            context: ./udagram-api/users
             dockerfile: Dockerfile      
-        image: msd4docker/repo_udagram:tag_backend_user
+        image: msd4docker/repo_udagram:tag_backend_users
         container_name: akuudagram-backend-users
         networks:
             - nw_udagram

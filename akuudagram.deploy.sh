@@ -1,5 +1,6 @@
 #!/bin/bash
 
+kubectl apply -f ./deploy/akuudagram.aws-secret.yaml
 kubectl apply -f ./deploy/akuudagram.backend.deployment.yaml
 kubectl apply -f ./deploy/akuudagram.backend.service.yaml
 #kubectl apply -f ./deploy/akuudagram.backend-feed.deployment.yaml

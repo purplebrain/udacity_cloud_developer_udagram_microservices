@@ -46,7 +46,7 @@ spec:
         ports:
         - containerPort: 8081
       - name: akuudagram-backend-users
-        image: msd4docker/repo_udagram:tag_backend_user
+        image: msd4docker/repo_udagram:tag_backend_users
         imagePullPolicy: Always
         env:
         - name: AWS_REGION
