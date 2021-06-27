@@ -1,0 +1,41 @@
+env:
+  global:
+   - DOCKER_REPO=repo_udagram
+  matrix:  
+   - SERVICE=svcFrontend
+     DOCKERFILE=udagram-frontend/Dockerfile
+     DOCKER_TAG=tag_frontend
+   - SERVICE=svcRproxy
+     DOCKERFILE=udagram-rproxy/Dockerfile
+     DOCKER_TAG=tag_rproxy
+   - SERVICE=svcBackendFeed
+     DOCKERFILE=udagram-api/feed/Dockerfile
+     DOCKER_TAG=tag_backend_feed
+   - SERVICE=svcBackendUser
+     DOCKERFILE=udagram-api/user/Dockerfile
+     DOCKER_TAG=tag_backend_user
+
+language: node_js
+node_js:
+ - 13
+
+services:
+ - docker
+
+# Pre-testing installs
+install:
+ - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+ - echo "no tests"
+
+script:
+ - docker --version # print the version for logging
+ - docker-compose build
+
+after_success:
+ - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+ - docker push ${DOCKER_USERNAME}/${DOCKER_REPO}:${DOCKER_TAG}
+
+
