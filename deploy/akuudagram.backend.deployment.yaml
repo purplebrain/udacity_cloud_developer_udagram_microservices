@@ -27,21 +27,21 @@ spec:
             cpu: "500m"      
         env:
         - name: AWS_REGION
-          value: "us-west-1"
+          value: ""
         - name: AWS_MEDIA_BUCKET
-          value: "s3akuudacityudagram"
+          value: ""
         - name: AWS_PROFILE
           value: "root"
         - name: POSTGRES_USERNAME
-          value: "codenameaku"
+          value: ""
         - name: POSTGRES_PASSWORD
-          value: "MSD4aws1"
+          value: ""
         - name: POSTGRES_DATABASE
-          value: "rdsAkuUdacityUdagram"
+          value: ""
         - name: POSTGRES_HOST
-          value: "rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com"
+          value: ""
         - name: POSTGRES_DB
-          value: "rdsAkuUdacityUdagram"
+          value: ""
         - name: URL
           value: "http://localhost:8100"
         - name: JWT_SECRET
@@ -64,21 +64,21 @@ spec:
             cpu: "500m"      
         env:
         - name: AWS_REGION
-          value: "us-west-1"
+          value: ""
         - name: AWS_MEDIA_BUCKET
-          value: "s3akuudacityudagram"
+          value: ""
         - name: AWS_PROFILE
           value: "root"
         - name: POSTGRES_USERNAME
-          value: "codenameaku"
+          value: ""
         - name: POSTGRES_PASSWORD
-          value: "MSD4aws1"
+          value: ""
         - name: POSTGRES_DATABASE
-          value: "rdsAkuUdacityUdagram"
+          value: ""
         - name: POSTGRES_HOST
-          value: "rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com"
+          value: ""
         - name: POSTGRES_DB
-          value: "rdsAkuUdacityUdagram"
+          value: ""
         - name: URL
           value: "http://localhost:8100"
         - name: JWT_SECRET
