@@ -18,6 +18,13 @@ spec:
       - name: akuudagram-backend-feed
         image: msd4docker/repo_udagram:tag_backend_feed
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"      
         env:
         - name: AWS_REGION
           value: "us-west-1"
@@ -48,6 +55,13 @@ spec:
       - name: akuudagram-backend-users
         image: msd4docker/repo_udagram:tag_backend_users
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"      
         env:
         - name: AWS_REGION
           value: "us-west-1"
